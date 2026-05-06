@@ -1,0 +1,17 @@
+# Constraints
+
+subject to:
+
+$$
+x_{k+1}
+=
+f(x_k,u_k)
+$$
+
+$$
+u_k \in \mathcal U
+$$
+
+$$
+x_k \in \mathcal X
+$$
