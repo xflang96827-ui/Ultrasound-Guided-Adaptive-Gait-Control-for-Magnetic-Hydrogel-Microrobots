@@ -1,0 +1,9 @@
+# Switching Signal
+
+The locomotion mode evolves as:
+
+$$
+\sigma(t)
+\in
+\{swim,roll\}
+$$
