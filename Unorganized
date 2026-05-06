@@ -1,32 +1,4 @@
-# Complete Theoretical Formula Modules for GitHub Research Repository
-
-This document contains research-grade mathematical modules extracted and reorganized from the supplementary materials of:
-
-**Ultrasound-Guided Closed-Loop Control of Magnetic Hydrogel Microrobots with Adaptive Gait Switching**
-
-All formulas are written in GitHub-compatible Markdown + LaTeX syntax.
-
-Recommended structure:
-
-```text
-docs/
-├── theory/
-├── derivations/
-├── notes/
-└── figures/
-```
-
----
-
 # 1. Geometric State Representation
-
-## Suggested File
-
-```text
-docs/theory/lie_groups.md
-```
-
----
 
 ## State Representation on SE(2)
 
@@ -129,12 +101,6 @@ $$
 ---
 
 # 2. Swimming Dynamics
-
-## Suggested File
-
-```text
-docs/theory/swimming_dynamics.md
-```
 
 ---
 
@@ -254,12 +220,6 @@ $$
 
 # 3. Rolling Dynamics
 
-## Suggested File
-
-```text
-docs/theory/rolling_dynamics.md
-```
-
 ---
 
 ## Continuous-Time Rolling Dynamics
@@ -374,12 +334,6 @@ $$
 
 # 4. Relative Pose Error
 
-## Suggested File
-
-```text
-docs/theory/geometric_tracking.md
-```
-
 ---
 
 ```markdown
@@ -408,12 +362,6 @@ $$
 ---
 
 # 5. Stochastic State Estimation
-
-## Suggested File
-
-```text
-docs/theory/ekf_derivation.md
-```
 
 ---
 
@@ -607,12 +555,6 @@ $$
 
 # 6. MPC Formulation
 
-## Suggested File
-
-```text
-docs/theory/mpc_formulation.md
-```
-
 ---
 
 ## MPC Objective Function
@@ -667,12 +609,6 @@ $$
 
 # 7. PID Control
 
-## Suggested File
-
-```text
-docs/theory/pid_control.md
-```
-
 ---
 
 ```markdown
@@ -696,12 +632,6 @@ $$
 ---
 
 # 8. Hybrid Dynamical Systems
-
-## Suggested File
-
-```text
-docs/theory/hybrid_systems.md
-```
 
 ---
 
@@ -754,12 +684,6 @@ $$
 ---
 
 # 9. RRT* Path Planning
-
-## Suggested File
-
-```text
-docs/theory/path_planning.md
-```
 
 ---
 
@@ -902,12 +826,6 @@ $$
 
 # 10. OBB + SAT Collision Detection
 
-## Suggested File
-
-```text
-docs/theory/collision_detection.md
-```
-
 ---
 
 ## Projection Interval
@@ -971,12 +889,6 @@ $$
 
 # 11. Path Optimization Constraints
 
-## Suggested File
-
-```text
-docs/theory/path_constraints.md
-```
-
 ---
 
 ## Vertical Optimization Objective
@@ -1020,70 +932,3 @@ $$
 ```
 
 ---
-
-# 12. Physics-Informed Learning Extensions
-
-## Suggested File
-
-```text
-docs/theory/pinn_extensions.md
-```
-
----
-
-## PINN Objective
-
-```markdown
-# Physics-Informed Learning
-
-Future learning modules may optimize:
-
-$$
-\mathcal L
-=
-\mathcal L_{data}
-+
-\lambda_p \mathcal L_{physics}
-+
-\lambda_b \mathcal L_{boundary}
-$$
-```
-
----
-
-## PDE-Constrained Learning
-
-```markdown
-# Governing Dynamics
-
-subject to:
-
-$$
-\frac{\partial u}{\partial t}
-+
-\mathcal N(u)
-=
-0
-$$
-```
-
----
-
-# Final Recommendation
-
-Your GitHub repository should not merely contain code.
-
-A strong research repository should simultaneously function as:
-
-* a robotics implementation platform,
-* a mathematical notebook,
-* a research diary,
-* and a long-term scientific framework.
-
-For doctoral-level positioning, the repository should progressively evolve toward:
-
-* geometric control,
-* hybrid systems,
-* uncertainty-aware robotics,
-* scientific machine learning,
-* and physics-informed embodied intelligence.
