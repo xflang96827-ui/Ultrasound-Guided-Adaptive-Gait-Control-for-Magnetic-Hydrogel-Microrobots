@@ -1,0 +1,7 @@
+# Correlated Noise Assumption
+
+Unlike standard EKF assumptions, this framework explicitly models:
+
+$$
+\mathrm{Cov}(w_k,v_k)\neq0
+$$
