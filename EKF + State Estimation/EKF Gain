@@ -1,0 +1,17 @@
+# Correlated-Noise EKF Gain
+
+The modified Kalman gain becomes:
+
+$$
+K_k =
+(P_k C_k^T + S_k)
+\left(
+C_k P_k C_k^T
++
+R_k
++
+H_k S_k
++
+S_k^T H_k^T
+\right)^{-1}
+$$
