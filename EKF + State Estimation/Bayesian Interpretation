@@ -1,0 +1,9 @@
+# Bayesian Filtering Interpretation
+
+The estimator recursively approximates:
+
+$$
+p(x_k \mid y_{1:k})
+$$
+
+through Bayesian filtering.
