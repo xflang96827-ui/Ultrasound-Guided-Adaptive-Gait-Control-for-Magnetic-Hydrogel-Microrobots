@@ -1,0 +1,21 @@
+# Rolling Dynamics
+
+Rolling locomotion is modeled as:
+
+$$
+\dot x
+=
+\mu_r \omega_r
+$$
+
+$$
+\dot y
+=
+0
+$$
+
+$$
+\dot\theta
+=
+\omega_r
+$$
