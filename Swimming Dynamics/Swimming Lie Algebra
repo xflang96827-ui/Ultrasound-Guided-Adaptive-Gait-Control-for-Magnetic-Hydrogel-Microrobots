@@ -1,0 +1,13 @@
+# Swimming Lie Algebra Representation
+
+The corresponding Lie algebra representation is:
+
+$$
+\hat\xi_{swim}
+=
+\begin{bmatrix}
+0 & 0 & v_y\tan\alpha \\
+0 & 0 & v_y \\
+0 & 0 & 0
+\end{bmatrix}
+$$
