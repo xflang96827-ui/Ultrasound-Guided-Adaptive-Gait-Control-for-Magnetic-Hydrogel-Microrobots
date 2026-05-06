@@ -1,0 +1,1089 @@
+# Complete Theoretical Formula Modules for GitHub Research Repository
+
+This document contains research-grade mathematical modules extracted and reorganized from the supplementary materials of:
+
+**Ultrasound-Guided Closed-Loop Control of Magnetic Hydrogel Microrobots with Adaptive Gait Switching**
+
+All formulas are written in GitHub-compatible Markdown + LaTeX syntax.
+
+Recommended structure:
+
+```text
+docs/
+├── theory/
+├── derivations/
+├── notes/
+└── figures/
+```
+
+---
+
+# 1. Geometric State Representation
+
+## Suggested File
+
+```text
+docs/theory/lie_groups.md
+```
+
+---
+
+## State Representation on SE(2)
+
+```markdown
+# Geometric State Representation
+
+The robot pose evolves on the Special Euclidean Lie group:
+
+$$
+SE(2)
+$$
+
+with configuration:
+
+$$
+X =
+\begin{bmatrix}
+\cos\theta & -\sin\theta & x \\
+\sin\theta & \cos\theta & y \\
+0 & 0 & 1
+\end{bmatrix}
+\in SE(2)
+$$
+```
+
+---
+
+## Lie Algebra Basis
+
+```markdown
+# Lie Algebra Basis
+
+The Lie algebra generators are:
+
+$$
+\hat e_1 =
+\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+
+$$
+\hat e_2 =
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+
+$$
+\hat e_3 =
+\begin{bmatrix}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+```
+
+---
+
+## Lie Algebra Velocity Representation
+
+```markdown
+# Lie Algebra Velocity Representation
+
+Any admissible body velocity is represented as:
+
+$$
+\hat\xi
+=
+v_x \hat e_1
++
+v_y \hat e_2
++
+\omega \hat e_3
+\in \mathfrak{se}(2)
+$$
+```
+
+---
+
+## Exponential Mapping
+
+```markdown
+# Exponential Mapping
+
+Robot pose evolution is computed through:
+
+$$
+X_{k+1}
+=
+X_k \exp(\Delta t \hat\xi)
+$$
+```
+
+---
+
+# 2. Swimming Dynamics
+
+## Suggested File
+
+```text
+docs/theory/swimming_dynamics.md
+```
+
+---
+
+## Continuous-Time Swimming Dynamics
+
+```markdown
+# Swimming Dynamics
+
+$$
+\dot x
+=
+v_y \tan(\alpha)\cos\theta
+-
+v_y \sin\theta
+$$
+
+$$
+\dot y
+=
+v_y \tan(\alpha)\sin\theta
++
+v_y \cos\theta
+$$
+
+$$
+\dot\theta = 0
+$$
+```
+
+---
+
+## Discrete-Time Swimming Dynamics
+
+```markdown
+# Discrete-Time Swimming Dynamics
+
+$$
+x_{k+1}
+=
+x_k
++
+\Delta t
+\left(
+\tan\alpha\cos\theta_k
+-
+\sin\theta_k
+\right)
+$$
+
+$$
+y_{k+1}
+=
+y_k
++
+\Delta t
+\left(
+\tan\alpha\sin\theta_k
+-
+\cos\theta_k
+\right)
+$$
+
+$$
+\theta_{k+1}
+=
+\theta_k
+$$
+```
+
+---
+
+## Swimming Lie Algebra Representation
+
+```markdown
+# Swimming Lie Algebra Representation
+
+$$
+\hat\xi_{swim}
+=
+\begin{bmatrix}
+0 & 0 & v_y\tan\alpha \\
+0 & 0 & v_y \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+```
+
+---
+
+## Swimming Exponential Mapping
+
+```markdown
+# Swimming Exponential Mapping
+
+$$
+X_{k+1}
+=
+X_k
+\exp(\Delta t \hat\xi_{swim})
+$$
+
+which expands to:
+
+$$
+X_{k+1}
+=
+X_k
+\begin{bmatrix}
+1 & 0 & \Delta t v_y\tan\alpha \\
+0 & 1 & \Delta t v_y \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+```
+
+---
+
+# 3. Rolling Dynamics
+
+## Suggested File
+
+```text
+docs/theory/rolling_dynamics.md
+```
+
+---
+
+## Continuous-Time Rolling Dynamics
+
+```markdown
+# Rolling Dynamics
+
+$$
+\dot x
+=
+\mu_r \omega_r
+$$
+
+$$
+\dot y
+=
+0
+$$
+
+$$
+\dot\theta
+=
+\omega_r
+$$
+```
+
+---
+
+## Discrete-Time Rolling Dynamics
+
+```markdown
+# Discrete-Time Rolling Dynamics
+
+$$
+x_{k+1}
+=
+x_k
++
+\Delta t \mu_r \omega_r
+$$
+
+$$
+y_{k+1}
+=
+y_k
+$$
+
+$$
+\theta_{k+1}
+=
+\theta_k
++
+\Delta t \omega_r
+$$
+```
+
+---
+
+## Rolling Lie Algebra Representation
+
+```markdown
+# Rolling Lie Algebra Representation
+
+$$
+\hat\xi_{roll}
+=
+\begin{bmatrix}
+0 & -\omega_r & \mu_r\omega_r \\
+\omega_r & 0 & 0 \\
+0 & 0 & 0
+\end{bmatrix}
+$$
+```
+
+---
+
+## Rolling Exponential Mapping
+
+```markdown
+# Rolling Exponential Mapping
+
+$$
+X_{k+1}
+=
+X_k
+\exp(\Delta t \hat\xi_{roll})
+$$
+
+which expands to:
+
+$$
+X_{k+1}
+=
+X_k
+\begin{bmatrix}
+\cos(\omega_r \Delta t)
+&
+-\sin(\omega_r \Delta t)
+&
+\mu_r\omega_r \\
+\sin(\omega_r \Delta t)
+&
+\cos(\omega_r \Delta t)
+&
+0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+```
+
+---
+
+# 4. Relative Pose Error
+
+## Suggested File
+
+```text
+docs/theory/geometric_tracking.md
+```
+
+---
+
+```markdown
+# Relative Pose Tracking Error
+
+The relative pose is defined as:
+
+$$
+X_{rel}
+=
+X_k^{-1} X_k^{ref}
+$$
+
+with representation:
+
+$$
+X_{rel}
+=
+\begin{bmatrix}
+R_{rel} & t_{rel} \\
+0 & 1
+\end{bmatrix}
+$$
+```
+
+---
+
+# 5. Stochastic State Estimation
+
+## Suggested File
+
+```text
+docs/theory/ekf_derivation.md
+```
+
+---
+
+## State Evolution Model
+
+```markdown
+# State Evolution
+
+The stochastic system evolves according to:
+
+$$
+x_{k+1}
+=
+A x_k
++
+B u_k
++
+w_k
+$$
+
+with observation model:
+
+$$
+y_k
+=
+C x_k
++
+v_k
+$$
+```
+
+---
+
+## Prediction Step
+
+```markdown
+# EKF Prediction
+
+$$
+\hat x_{k|k-1}
+=
+A_k \hat x_{k-1|k-1}
++
+B_k u_k
+$$
+```
+
+---
+
+## Covariance Propagation
+
+```markdown
+# Covariance Propagation
+
+$$
+P_{k|k-1}
+=
+A_k P_{k-1|k-1} A_k^T
++
+Q_k
+$$
+```
+
+---
+
+## Standard Kalman Gain
+
+```markdown
+# Standard Kalman Gain
+
+$$
+K_k
+=
+P_{k|k-1} C_k^T
+\left(
+C_k P_{k|k-1} C_k^T
++
+R_k
+\right)^{-1}
+$$
+```
+
+---
+
+## State Update
+
+```markdown
+# State Update
+
+$$
+\hat x_{k|k}
+=
+\hat x_{k|k-1}
++
+K_k
+\left(
+y_k
+-
+C_k \hat x_{k|k-1}
+\right)
+$$
+```
+
+---
+
+## Correlated Noise Assumption
+
+```markdown
+# Correlated Noise Assumption
+
+Unlike conventional EKF assumptions:
+
+$$
+\mathrm{Cov}(w_k,v_k)
+\neq
+0
+$$
+```
+
+---
+
+## Correlated-Noise EKF Gain
+
+```markdown
+# Correlated-Noise EKF Gain
+
+$$
+K_k
+=
+(P_k C_k^T + S_k)
+\left(
+C_k P_k C_k^T
++
+R_k
++
+H_k S_k
++
+S_k^T H_k^T
+\right)^{-1}
+$$
+```
+
+---
+
+## Correlated Covariance Update
+
+```markdown
+# Correlated Covariance Update
+
+$$
+P_{k|k}
+=
+(I-K_kC_k)
+P_{k|k-1}
+(I-K_kC_k)^T
++
+K_kR_kK_k^T
+-
+K_kS_k^T
+-
+S_kK_k^T
+$$
+```
+
+---
+
+## Bayesian Filtering Interpretation
+
+```markdown
+# Bayesian Interpretation
+
+The estimator recursively approximates:
+
+$$
+p(x_k \mid y_{1:k})
+$$
+
+through Bayesian filtering.
+
+The recursive Bayesian update is:
+
+$$
+p(x_k|y_{1:k})
+\propto
+p(y_k|x_k)
+p(x_k|y_{1:k-1})
+$$
+```
+
+---
+
+# 6. MPC Formulation
+
+## Suggested File
+
+```text
+docs/theory/mpc_formulation.md
+```
+
+---
+
+## MPC Objective Function
+
+```markdown
+# Model Predictive Control
+
+The finite-horizon optimization problem is:
+
+$$
+\min_{u_{0:N-1}}
+\sum_{k=0}^{N-1}
+\left(
+ e_k^T Q e_k
++
+u_k^T R u_k
+\right)
++
+e_N^T P e_N
+$$
+```
+
+---
+
+## MPC Constraints
+
+```markdown
+# MPC Constraints
+
+subject to:
+
+$$
+x_{k+1}
+=
+f(x_k,u_k)
+$$
+
+$$
+u_k
+\in
+\mathcal U
+$$
+
+$$
+x_k
+\in
+\mathcal X
+$$
+```
+
+---
+
+# 7. PID Control
+
+## Suggested File
+
+```text
+docs/theory/pid_control.md
+```
+
+---
+
+```markdown
+# PID Rolling Controller
+
+The rolling angular velocity is regulated by:
+
+$$
+\omega_r
+=
+K_p e_\theta
++
+K_i \int e_\theta dt
++
+K_d \frac{de_\theta}{dt}
++
+K_{p,x} e_x
+$$
+```
+
+---
+
+# 8. Hybrid Dynamical Systems
+
+## Suggested File
+
+```text
+docs/theory/hybrid_systems.md
+```
+
+---
+
+## Hybrid System Representation
+
+```markdown
+# Hybrid Dynamical System
+
+The complete robot forms a hybrid system:
+
+$$
+\mathcal H
+=
+(\mathcal C,F,\mathcal D,G)
+$$
+```
+
+---
+
+## Switching Signal
+
+```markdown
+# Switching Signal
+
+The locomotion mode evolves as:
+
+$$
+\sigma(t)
+\in
+\{swim,roll\}
+$$
+```
+
+---
+
+## Average Dwell Time Stability
+
+```markdown
+# Average Dwell Time Stability
+
+Stable switching is guaranteed when:
+
+$$
+\tau_d
+>
+\tau_d^\star
+$$
+```
+
+---
+
+# 9. RRT* Path Planning
+
+## Suggested File
+
+```text
+docs/theory/path_planning.md
+```
+
+---
+
+## Random Sampling
+
+```markdown
+# Random Sampling
+
+$$
+x_{rand}
+\sim
+\mathrm{Uniform}(\chi)
+$$
+```
+
+---
+
+## Nearest Node Search
+
+```markdown
+# Nearest Node Search
+
+$$
+x_{near}
+=
+\arg\min_{x\in V}
+\|x-x_{rand}\|
+$$
+```
+
+---
+
+## Node Expansion
+
+```markdown
+# Node Expansion
+
+$$
+d
+=
+\|x_{rand}-x_{near}\|
+$$
+
+$$
+x_{new}
+=
+\begin{cases}
+x_{rand}, & d<\eta \\
+
+x_{near}
++
+\frac{x_{rand}-x_{near}}{d}\eta,
+& \text{otherwise}
+\end{cases}
+$$
+```
+
+---
+
+## Search Radius
+
+```markdown
+# Search Radius
+
+$$
+r
+=
+\gamma
+\left(
+\frac{\log |V|}{|V|}
+\right)^{1/d}
+$$
+```
+
+---
+
+## Parent Selection
+
+```markdown
+# Parent Selection
+
+$$
+x_{min}
+=
+\arg\min_{x\in X_{near}}
+\left(
+\mathrm{Cost}(x)
++
+\|x-x_{new}\|
+\right)
+$$
+```
+
+---
+
+## Path Cost
+
+```markdown
+# Path Cost
+
+$$
+\mathrm{Cost}(x)
+=
+\sum_{i=1}^{n}
+\|x_i-x_{i-1}\|
+$$
+```
+
+---
+
+## Rewiring Condition
+
+```markdown
+# Rewiring Condition
+
+$$
+\mathrm{Cost}(x_{new})
++
+\|x_{new}-x\|
+<
+\mathrm{Cost}(x)
+$$
+```
+
+---
+
+## Collision-Free Constraint
+
+```markdown
+# Collision-Free Constraint
+
+$$
+\mathrm{ObstacleFree}(x_i,x_j)
+=
+\mathrm{True}
+$$
+```
+
+---
+
+# 10. OBB + SAT Collision Detection
+
+## Suggested File
+
+```text
+docs/theory/collision_detection.md
+```
+
+---
+
+## Projection Interval
+
+```markdown
+# Projection Interval
+
+The projection interval is:
+
+$$
+\mathrm{Projection}_i
+=
+[C_i \cdot L-r_i,
+C_i \cdot L+r_i]
+$$
+```
+
+---
+
+## Projection Radius
+
+```markdown
+# Projection Radius
+
+$$
+r_i
+=
+ h_{x_i}|u_i\cdot L|
++
+h_{y_i}|v_i\cdot L|
++
+h_{z_i}|w_i\cdot L|
+$$
+```
+
+---
+
+## SAT Non-Intersection Condition
+
+```markdown
+# SAT Non-Intersection Condition
+
+Two OBBs do not intersect if:
+
+$$
+C_i\cdot L+r_i
+<
+C_j\cdot L-r_j
+$$
+
+or:
+
+$$
+C_j\cdot L+r_j
+<
+C_i\cdot L-r_i
+$$
+```
+
+---
+
+# 11. Path Optimization Constraints
+
+## Suggested File
+
+```text
+docs/theory/path_constraints.md
+```
+
+---
+
+## Vertical Optimization Objective
+
+```markdown
+# Vertical Path Optimization
+
+$$
+\min
+\sum_{i=1}^{n-1}
+|\Delta y_i|
+$$
+```
+
+---
+
+## Motion Constraints
+
+```markdown
+# Motion Constraints
+
+$$
+|\Delta y_i|
+\le
+\Delta y_{max}
+$$
+```
+
+---
+
+## Obstacle Constraint
+
+```markdown
+# Obstacle Constraint
+
+$$
+\mathrm{ObstacleFree}(x_{i+1},x_i)
+=
+\mathrm{True}
+$$
+```
+
+---
+
+# 12. Physics-Informed Learning Extensions
+
+## Suggested File
+
+```text
+docs/theory/pinn_extensions.md
+```
+
+---
+
+## PINN Objective
+
+```markdown
+# Physics-Informed Learning
+
+Future learning modules may optimize:
+
+$$
+\mathcal L
+=
+\mathcal L_{data}
++
+\lambda_p \mathcal L_{physics}
++
+\lambda_b \mathcal L_{boundary}
+$$
+```
+
+---
+
+## PDE-Constrained Learning
+
+```markdown
+# Governing Dynamics
+
+subject to:
+
+$$
+\frac{\partial u}{\partial t}
++
+\mathcal N(u)
+=
+0
+$$
+```
+
+---
+
+# Final Recommendation
+
+Your GitHub repository should not merely contain code.
+
+A strong research repository should simultaneously function as:
+
+* a robotics implementation platform,
+* a mathematical notebook,
+* a research diary,
+* and a long-term scientific framework.
+
+For doctoral-level positioning, the repository should progressively evolve toward:
+
+* geometric control,
+* hybrid systems,
+* uncertainty-aware robotics,
+* scientific machine learning,
+* and physics-informed embodied intelligence.
