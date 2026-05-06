@@ -1,0 +1,15 @@
+# Model Predictive Control
+
+The finite-horizon optimization problem is:
+
+$$
+\min_{u_{0:N-1}}
+\sum_{k=0}^{N-1}
+\left(
+\|x_k-x_k^{ref}\|_Q^2
++
+\|u_k\|_R^2
+\right)
++
+\|x_N-x_N^{ref}\|_P^2
+$$
