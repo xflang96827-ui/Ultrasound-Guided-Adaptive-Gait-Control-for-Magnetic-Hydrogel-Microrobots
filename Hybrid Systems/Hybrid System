@@ -1,0 +1,9 @@
+# Hybrid Dynamical System
+
+The complete robot forms a hybrid system:
+
+$$
+\mathcal H
+=
+(\mathcal C,F,\mathcal D,G)
+$$
