@@ -1,1 +1,24 @@
+# Geometric State Representation
 
+The robot pose evolves on the Special Euclidean Lie group:
+
+$$
+SE(2)
+$$
+
+with configuration:
+
+$$
+X =
+\begin{bmatrix}
+\cos\theta & -\sin\theta & x \\
+\sin\theta & \cos\theta & y \\
+0 & 0 & 1
+\end{bmatrix}
+\in SE(2)
+$$
+
+where:
+
+- $(x,y)$ denotes planar position
+- $\theta$ denotes heading orientation
