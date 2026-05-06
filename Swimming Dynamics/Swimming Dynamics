@@ -1,0 +1,23 @@
+# Swimming Dynamics
+
+Swimming locomotion is modeled as:
+
+$$
+\dot x
+=
+v_y \tan(\alpha)\cos\theta
+-
+v_y \sin\theta
+$$
+
+$$
+\dot y
+=
+v_y \tan(\alpha)\sin\theta
++
+v_y \cos\theta
+$$
+
+$$
+\dot\theta = 0
+$$
