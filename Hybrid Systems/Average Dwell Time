@@ -1,0 +1,9 @@
+# Average Dwell Time Stability
+
+Stable switching is guaranteed when:
+
+$$
+\tau_d
+>
+\tau_d^\star
+$$
